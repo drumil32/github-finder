@@ -7,10 +7,11 @@ export const GithubProvider = ({ children }) => {
     const initialState = {
         users: [],
         user: {},
+        userRepos: [],
         loading: false
     };
     const [state, dispatch] = useReducer(githubReducer, initialState);
-    
+
 
     // get initial users (testing purpose)
     const fetchUsers = async () => {
@@ -56,9 +57,29 @@ export const GithubProvider = ({ children }) => {
         }
     }
 
+    const getUserRepos = async (userName) => {
+        dispatch({ type: 'SET_LOADING' });
+        const params = new URLSearchParams({
+            sort:'created',
+            per_page:10,
+        })
+        // https://api.github.com/users/drumil32/repos
+        const response = await fetch(`${process.env.REACT_APP_GITHUB_URL}/users/${userName}/repos?${params}`);
+        if( response.status===404 ){
+            console.log('here');
+        }else{
+            const data = await response.json();
+            console.log(data);
+            dispatch({
+                type : 'GET_REPOS',
+                payload : data
+            });
+        }
+    }
+
     const clearSearchData = () => dispatch({ type: 'CLEAR_USERS' });
 
-    const clearUserDetails = () => {console.log("it is called");dispatch({ type: 'CLEAR_USER'})};
+    const clearUserDetailsAndRepos = () => { console.log("it is called"); dispatch({ type: 'CLEAR_USERS_AND_REPOS' }) };
 
     return (
         <GithubContext.Provider value=
@@ -66,11 +87,13 @@ export const GithubProvider = ({ children }) => {
                 users: state.users,
                 user: state.user,
                 loading: state.loading,
+                userRepos : state.userRepos,
                 fetchUsers,
                 clearSearchData,
                 fetchSearchResult,
                 fetchUserDetails,
-                clearUserDetails
+                clearUserDetailsAndRepos,
+                getUserRepos
             }} >
             {children}
         </GithubContext.Provider>
