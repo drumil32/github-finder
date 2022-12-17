@@ -1,16 +1,18 @@
 import React,{useState,useContext,useReducer} from 'react';
 import GithubContext from '../../context/github/GithubContext';
-import GithubReducer from '../../context/github/GithubReducer'
+import AlertContext from '../../context/alert/AlertContext';
+
 
 function UserSearch() {
     const [text,setText] = useState('');
     const {users,dispatch,fetchSearchResult} = useContext(GithubContext);
+    const {setAlert} = useContext(AlertContext);
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
 
         if( ''===text.trim() ){
-            alert('Please enter Text');
+            setAlert('Please enter Text','error');
         }else{
             fetchSearchResult(text);
             setText('');
