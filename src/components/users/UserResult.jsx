@@ -9,7 +9,7 @@ function UserResult() {
     return (
         <main className="container mx-auto px-3 pb-12">
             {loading ?
-                <><Spinner /></>
+                <Spinner />
                 : <div className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
                     {
                         users.map((user, id) => {

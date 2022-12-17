@@ -23,7 +23,7 @@ function UserItem({ user: { login, avatar_url } }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 UserItem.propTypes = {

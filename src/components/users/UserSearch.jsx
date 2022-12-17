@@ -5,7 +5,7 @@ import AlertContext from '../../context/alert/AlertContext';
 
 function UserSearch() {
     const [text,setText] = useState('');
-    const {users,dispatch,fetchSearchResult} = useContext(GithubContext);
+    const {users,dispatch,fetchSearchResult,clearSearchData} = useContext(GithubContext);
     const {setAlert} = useContext(AlertContext);
 
     const handleSubmit = async (e)=>{
@@ -47,7 +47,7 @@ function UserSearch() {
             {users.length > 0 && (
                 <div>
                     <button
-                        onClick={() => dispatch({ type: 'CLEAR_USERS' })}
+                        onClick={clearSearchData}
                         className='btn btn-ghost btn-lg'
                     >
                         Clear
