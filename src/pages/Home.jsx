@@ -1,15 +1,21 @@
 import React, { useContext } from 'react';
-import Spinner from '../components/layout/Spinner';
 import UserResult from '../components/users/UserResult';
 import UserSearch from '../components/users/UserSearch';
+import Snipper from '../components/layout/Spinner';
 import GithubContext from '../context/github/GithubContext';
 
 function Home() {
-
+    const { loading } = useContext(GithubContext);
     return (
         <>
-            <UserSearch />
-            <UserResult />
+            {
+                loading ?
+                    <Snipper /> :
+                    <>
+                        <UserSearch />
+                        <UserResult />
+                    </>
+            }
         </>
     )
 }

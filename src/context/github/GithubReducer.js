@@ -17,23 +17,20 @@ const GithubReducer = (state, action) => {
                 ...state,
                 users : []
             }
-        case 'GET_USER' :
+        case 'GET_USER_AND_REPOS' :
+            console.log('hello');
             return {
                 ...state,
-                user : action.payload,
+                user : action.payload.user,
+                userRepos : action.payload.repos,
                 loading : false
             }
         case 'CLEAR_USERS_AND_REPOS' :
+            console.log('hello1');
             return {
                 ...state,
                 user : {},
-                repos : []
-            }
-        case 'GET_REPOS' :
-            return{
-                ...state,
-                userRepos : action.payload,
-                loading : false
+                userRepos : []
             }
         default:
             return state;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RepoItem from './RepoItem'
 
 function ReposList({ repos }) {
+    console.log(repos);
     return (
         <div className='rounded-lg shadow-lg card bg-base-100'>
             <div className='card-body'>
