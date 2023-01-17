@@ -6,7 +6,6 @@ import RepoList from '../components/repos/RepoList';
 import Snipper from '../components/layout/Spinner';
 import { userDataAndRepos } from '../context/github/GithubActions';
 
-
 function User() {
     const { user, dispatch, userRepos, loading } = useContext(GithubContext);
     const params = useParams();

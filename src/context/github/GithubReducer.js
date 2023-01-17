@@ -26,7 +26,6 @@ const GithubReducer = (state, action) => {
                 loading : false
             }
         case 'CLEAR_USERS_AND_REPOS' :
-            console.log('hello1');
             return {
                 ...state,
                 user : {},
