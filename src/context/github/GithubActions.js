@@ -12,7 +12,6 @@ const github = axios.create(
 export const fetchSearchResult = async (text) => {
     const response = await github.get(`/search/users?q=${text}`);
     return response.data.items;
-
 }
 
 export const getUserRepos = async (userName) => {
